@@ -72,6 +72,10 @@ return [
             // table names from My database
             'provider' => 'admins',
         ],
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'seller',
+        ],
     ],
 
 
@@ -109,10 +113,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        //<<Provider>>(comment on retrouve un utilisateur authentifié,par exemple avec Eloquent)
+        //<<Provider>>(comment on retrouve un utilisateur authentifié,par exemple avec Eloquent? grace a sont Modèle)
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'seller' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Seller::class,
         ],
 
         // 'users' => [

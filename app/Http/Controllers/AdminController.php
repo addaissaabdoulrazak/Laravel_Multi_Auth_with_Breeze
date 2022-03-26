@@ -30,11 +30,17 @@ class AdminController extends Controller
     public function Login(Request $request)
     {
         // you can use  dd($check)=> Dump data; for checking that everything working
-        //recuperer toutes les données de la base de données 
-        $check = $request->all();
+        // all() => recuperer tout les données dans ma requêtes, et non dans la base de données 
 
-        // verification si les données de la data bases sont equivalente au données reçu dans la variable $request 
-        if (Auth::guard('admin')->attempt(['email' => $check["email"], 'password' => $check['password']])) {
+
+        // $check = $request->all();
+        //dd($check);
+        $credentials = [
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ];
+        // verification si les données de la data bases sont equivalente au données reçu dans la variable $request a travers le tableau $creadentials 
+        if (Auth::guard('admin')->attempt($credentials)) {
             return redirect()->route('admin.dashboard')->with('error', 'administrateur authentifier avec success');
         } else {
             return back()->with('error', 'password or email failed');
